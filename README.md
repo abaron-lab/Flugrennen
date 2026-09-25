@@ -15,7 +15,8 @@ Arcade-Flugzeugrennen im Splitscreen für 2 Spieler – gesteuert mit den Hände
   **Hochhäuser mit Loch, durch das man hindurchfliegen muss**.
 - Jeder hat **5 Leben** (Punkte oben in der Ecke). Wer ohne Treffer fliegt, wird schneller.
   Am Ende gewinnt, wer am weitesten gekommen ist (bzw. wer nicht abgestürzt ist).
-- Vor dem Rennen wählt jeder sein Flugzeug (Propeller, Jet, Doppeldecker) und die Farbe.
+- Vor dem Rennen wählt jeder sein Flugzeug und die Farbe. Im Menü werden Höchstgeschwindigkeit und Wendigkeit angezeigt:
+  Jet 436 km/h (am schnellsten, aber träge), Propeller 396 km/h (ausgewogen), Doppeldecker 368 km/h (am wendigsten).
 - Ohne Kamera spielbar mit Tastatur: Spieler 1 `W A S D`, Spieler 2 Pfeiltasten.
 
 ## Starten

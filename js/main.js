@@ -1,6 +1,6 @@
 // Spielablauf: Menü → Startbahn (Hände kalibrieren) → Countdown → Rennen (90 s) → Ergebnis.
 
-import { PLANE_TYPES, COLORS, PLAYER_COLORS, drawPlane } from './planes.js';
+import { PLANE_TYPES, COLORS, PLAYER_COLORS, drawPlane, BASE_SPEED, SPEED_BONUS, topSpeedKmh } from './planes.js';
 import { generateTrack, updateObstacles, collides, CRUISE, ALT_RANGE, LANE, RACE_TIME } from './track.js';
 import { renderView, renderGlobal } from './render.js';
 import { HandTracker } from './hands.js';
@@ -146,7 +146,7 @@ function updatePlayer(p, dt) {
   const spec = p.spec;
   // Tempo: wird schneller, je länger man ohne Treffer fliegt
   p.cleanTime += dt;
-  const cruiseSpeed = spec.speed * (72 + Math.min(38, p.cleanTime * 0.9));
+  const cruiseSpeed = spec.speed * (BASE_SPEED + Math.min(SPEED_BONUS, p.cleanTime * 0.9));
   if (!p.airborne) {
     p.speed = Math.min(cruiseSpeed, p.speed + dt * 26);
     if (p.speed > 55) p.airborne = true;
@@ -335,11 +335,12 @@ function buildMenu() {
       colors.querySelectorAll('button').forEach((b) => b.classList.toggle('sel', b.dataset.color === choice[i].color));
       const spec = PLANE_TYPES.find((p) => p.id === choice[i].type);
       card.querySelector('.desc').textContent = spec.desc;
+      renderStats(card.querySelector('.plane-stats'), spec);
       game.players = [makePlayer(0), makePlayer(1)];
     };
     for (const pt of PLANE_TYPES) {
       const b = document.createElement('button');
-      b.textContent = pt.name;
+      b.innerHTML = `${pt.name}<small>${topSpeedKmh(pt)} km/h</small>`;
       b.dataset.type = pt.id;
       b.onclick = () => { choice[i].type = pt.id; refresh(); };
       types.appendChild(b);
@@ -356,6 +357,22 @@ function buildMenu() {
     refresh();
   });
   animatePreviews();
+}
+
+// Höchstgeschwindigkeit und Wendigkeit als Balken im Vergleich zu allen Flugzeugen
+function renderStats(el, spec) {
+  const maxTop = Math.max(...PLANE_TYPES.map(topSpeedKmh));
+  const minTop = Math.min(...PLANE_TYPES.map(topSpeedKmh));
+  const maxHand = Math.max(...PLANE_TYPES.map((t) => t.handling));
+  const minHand = Math.min(...PLANE_TYPES.map((t) => t.handling));
+  // Balken 45–100 %, damit Unterschiede gut sichtbar sind
+  const pct = (v, lo, hi) => 45 + 55 * (hi === lo ? 1 : (v - lo) / (hi - lo));
+  const top = topSpeedKmh(spec);
+  el.innerHTML = `
+    <div class="stat-row"><span>Höchstgeschw.</span>
+      <div class="bar"><i style="width:${pct(top, minTop, maxTop)}%"></i></div><b>${top} km/h</b></div>
+    <div class="stat-row"><span>Wendigkeit</span>
+      <div class="bar"><i style="width:${pct(spec.handling, minHand, maxHand)}%"></i></div><b>${Math.round(spec.handling * 100)} %</b></div>`;
 }
 
 function animatePreviews() {

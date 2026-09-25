@@ -11,6 +11,11 @@ export const COLORS = [
   '#3a86ff', '#8338ec', '#ff5d8f', '#f1f1f1', '#3d405b',
 ];
 
+// Tempo in m/s: Start-Reisetempo und maximaler Bonus, wenn man lange ohne Treffer fliegt.
+export const BASE_SPEED = 72;
+export const SPEED_BONUS = 38;
+export const topSpeedKmh = (spec) => Math.round(spec.speed * (BASE_SPEED + SPEED_BONUS) * 3.6);
+
 // Spielerfarben für Hände, Lenkrad und HUD.
 export const PLAYER_COLORS = ['#2f8cff', '#ff8a1f'];
 
