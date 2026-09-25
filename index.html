@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0b1d3a">
+  <title>Flugrennen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="cam-wrap" class="hidden">
+    <video id="cam" playsinline muted autoplay></video>
+    <canvas id="cam-overlay"></canvas>
+  </div>
+
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <h1 class="logo">FLUG<span>RENNEN</span></h1>
+      <p class="sub">Arcade-Flugzeugrennen für 2 Spieler – gesteuert mit den Händen vor der Kamera</p>
+      <div class="players">
+        <div class="pcard" data-player="0">
+          <h2>Spieler 1 <small>links</small></h2>
+          <canvas class="preview"></canvas>
+          <p class="desc"></p>
+          <div class="types"></div>
+          <div class="colors"></div>
+        </div>
+        <div class="pcard" data-player="1">
+          <h2>Spieler 2 <small>rechts</small></h2>
+          <canvas class="preview"></canvas>
+          <p class="desc"></p>
+          <div class="types"></div>
+          <div class="colors"></div>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btn-cam" class="big">📷 Mit Kamera starten</button>
+        <button id="btn-keys">⌨️ Mit Tastatur spielen</button>
+      </div>
+      <details class="help">
+        <summary>So wird gesteuert</summary>
+        <ul>
+          <li>Setzt euch nebeneinander vor die Kamera – Spieler 1 links, Spieler 2 rechts.</li>
+          <li>Haltet beide Hände vor euch wie an einem Flugzeug-Steuerhorn.</li>
+          <li><b>Lenkrad drehen</b> (eine Hand hoch, die andere runter) = nach links/rechts fliegen.</li>
+          <li><b>Beide Hände heben</b> = steigen, <b>beide Hände senken</b> = sinken (± 20 m um die Reiseflughöhe von 150 m).</li>
+          <li>Weicht Bergspitzen, Hochhäusern, Zeppelinen und Heißluftballons aus. Durch die Löcher in den Hochhäusern müsst ihr durchfliegen!</li>
+          <li>Jeder hat 5 Leben. Nach 90 Sekunden gewinnt, wer am weitesten geflogen ist.</li>
+          <li>Tastatur: Spieler 1 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>, Spieler 2 Pfeiltasten.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <div id="result" class="overlay hidden">
+    <div class="panel">
+      <h1 class="winner"></h1>
+      <div class="stats"></div>
+      <div class="actions">
+        <button id="btn-again" class="big">🔁 Nochmal</button>
+        <button id="btn-menu">✈️ Flugzeug wechseln</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

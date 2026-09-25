@@ -1,0 +1,75 @@
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: #0b1d3a; color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-user-select: none; user-select: none;
+  touch-action: manipulation;
+}
+#game { position: fixed; inset: 0; display: block; }
+.hidden { display: none !important; }
+
+#cam-wrap {
+  position: fixed; left: 50%; bottom: 10px; transform: translateX(-50%);
+  width: min(26vw, 340px); aspect-ratio: 16 / 9;
+  border: 3px solid rgba(255,255,255,0.85); border-radius: 10px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 5; background: #000;
+}
+#cam, #cam-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+#cam { object-fit: fill; transform: scaleX(-1); opacity: 0.85; }
+
+.overlay {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(11,29,58,0.55), rgba(11,29,58,0.92));
+  overflow-y: auto; padding: 16px;
+}
+.panel { width: min(900px, 100%); text-align: center; margin: auto; }
+.logo {
+  font-family: 'Russo One', system-ui, sans-serif; font-size: clamp(40px, 8vw, 84px);
+  margin: 0; letter-spacing: 2px; color: #ffd23f;
+  text-shadow: 0 5px 0 #b3261e, 0 10px 18px rgba(0,0,0,0.5);
+  font-style: italic;
+}
+.logo span { color: #fff; }
+.sub { margin: 6px 0 18px; opacity: 0.85; }
+
+.players { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pcard {
+  background: rgba(0,0,0,0.35); border: 3px solid var(--pc); border-radius: 16px; padding: 12px;
+}
+.pcard h2 { margin: 0 0 8px; color: var(--pc); font-family: 'Russo One', system-ui, sans-serif; }
+.pcard h2 small { font-size: 13px; opacity: 0.7; color: #fff; font-family: system-ui, sans-serif; }
+.preview { width: 100%; height: 120px; border-radius: 10px; display: block; }
+.desc { margin: 8px 0; min-height: 1.2em; opacity: 0.85; font-size: 14px; }
+.types, .colors { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 8px; }
+
+button {
+  font: inherit; color: #fff; cursor: pointer;
+  background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 10px; padding: 8px 12px;
+}
+button:hover { background: rgba(255,255,255,0.22); }
+.types button.sel { background: var(--pc); border-color: #fff; }
+.swatch { width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.swatch.sel { border: 3px solid #fff; box-shadow: 0 0 0 3px var(--pc); }
+
+.actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0 8px; }
+button.big {
+  font-family: 'Russo One', system-ui, sans-serif; font-size: 22px; padding: 12px 26px;
+  background: linear-gradient(#ffd23f, #ff8c42); color: #3a1c00; border-color: #fff;
+}
+.help { text-align: left; max-width: 640px; margin: 8px auto; background: rgba(0,0,0,0.3); border-radius: 10px; padding: 8px 14px; }
+.help summary { cursor: pointer; font-weight: bold; }
+.help li { margin: 4px 0; }
+kbd { background: #fff; color: #000; border-radius: 4px; padding: 0 5px; margin: 0 1px; font-size: 12px; }
+
+.winner { font-family: 'Russo One', system-ui, sans-serif; font-size: clamp(32px, 6vw, 60px); margin: 0 0 16px; text-shadow: 0 4px 12px rgba(0,0,0,0.6); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.stat { background: rgba(0,0,0,0.4); border: 3px solid; border-radius: 14px; padding: 10px; }
+.stat h3 { margin: 4px 0; font-family: 'Russo One', system-ui, sans-serif; }
+.stat p { margin: 4px 0; }
+
+@media (max-width: 560px) {
+  .players, .stats { grid-template-columns: 1fr; }
+}
