@@ -34,6 +34,10 @@ python3 -m http.server 8000
 **Auf dem iPhone:** Die Seite muss per HTTPS erreichbar sein, z. B. über GitHub Pages
 (Repository → Settings → Pages → Branch auswählen) und dann in Safari öffnen. iPhone quer halten.
 
+**Updates:** Nach einem Push dauert es 1–2 Minuten, bis GitHub Pages die neue Version ausliefert.
+Welche Version geladen ist, steht unten im Menü. Bei Änderungen die Versionsnummer `v=…` in `index.html`
+erhöhen (Import-Map, `style.css`, `main.js` und Menütext), damit der Browser keine alten Dateien aus dem Cache nimmt.
+
 ## Tipps für gute Erkennung
 
 - Gutes Licht von vorne, ca. 1–2 m Abstand, beide Spieler vollständig mit Händen im Bild.

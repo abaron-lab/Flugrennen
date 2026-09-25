@@ -79,3 +79,4 @@ kbd { background: #fff; color: #000; border-radius: 4px; padding: 0 5px; margin:
 @media (max-width: 560px) {
   .players, .stats { grid-template-columns: 1fr; }
 }
+.version { font-size: 12px; opacity: 0.55; margin: 10px 0 0; }

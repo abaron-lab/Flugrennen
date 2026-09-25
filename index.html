@@ -6,10 +6,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#0b1d3a">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Flugrennen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <canvas id="game"></canvas>
@@ -57,6 +60,7 @@
           <li>Tastatur: Spieler 1 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>, Spieler 2 Pfeiltasten.</li>
         </ul>
       </details>
+      <p class="version">Version 3</p>
     </div>
   </div>
 
@@ -71,6 +75,20 @@
     </div>
   </div>
 
-  <script type="module" src="js/main.js"></script>
+  <!-- Bei jedem Update die Versionsnummer (v=…) hier und unten im Menü erhöhen,
+       damit Browser und GitHub Pages keine alten Dateien aus dem Cache verwenden. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "./js/main.js": "./js/main.js?v=3",
+      "./js/planes.js": "./js/planes.js?v=3",
+      "./js/track.js": "./js/track.js?v=3",
+      "./js/render.js": "./js/render.js?v=3",
+      "./js/hands.js": "./js/hands.js?v=3",
+      "./js/audio.js": "./js/audio.js?v=3"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js?v=3"></script>
 </body>
 </html>
